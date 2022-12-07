@@ -8,7 +8,6 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @SpringBootApplication
 @EnableScheduling
 @EnableAspectJAutoProxy
-@EnableSwagger2
 public class ExamThourayaS2Application {
 
 	public static void main(String[] args) {
