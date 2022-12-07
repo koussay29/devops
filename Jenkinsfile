@@ -31,7 +31,7 @@ pipeline {
     stage('Docker build ') {
       steps {
          sh 'echo "*********Docker build image is processing ....*********"'
-        sh 'docker build -t ${dockerhubusername}/ExamThourayaS2 .'
+        sh 'docker build -t ${dockerhubusername}/exam .'
       }
     }
 
@@ -45,7 +45,7 @@ pipeline {
     stage('Docker push') {
       steps {
          sh 'echo "*********Docker push is processing ....*********"'
-        sh 'docker push ${dockerhubusername}/ExamThourayaS2'
+        sh 'docker push ${dockerhubusername}/exam'
 
       }
     }        
