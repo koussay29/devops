@@ -14,6 +14,20 @@ pipeline {
         sh 'mvn clean'
       }
     }
+    stage ('project compilation') {
+            steps {
+                sh 'echo "*********Artifact construction is processing ....*********"'
+                sh 'mvn -DskipTests compile'
+            }
+        }
+    stage("SonarQube ") {
+            steps {
+              withSonarQubeEnv('SonarQube') {
+                sh 'mvn clean -DskipTests package sonar:sonar'
+		echo "*********SonarQube analysis finished with SUCCESS *********"
+              }
+            }
+    }
     
     stage ('Artifact construction') {
             steps {
@@ -21,8 +35,12 @@ pipeline {
                 sh 'mvn -DskipTests package'
             }
         }
-
-    
+    stage("NEXUS") {
+			steps {
+				sh 'mvn clean deploy -DskipTests'
+				echo "*********NEXUS deployement finished with SUCCESS *********"
+          }
+        }
 
     stage('Docker build ') {
       steps {
@@ -51,20 +69,7 @@ pipeline {
 			echo "*********Apllication Is Started *********"
       }
     }/*
-    stage("NEXUS") {
-			steps {
-				sh 'mvn clean deploy -DskipTests'
-				echo "*********NEXUS deployement finished with SUCCESS *********"
-          }
-        }
-    stage("SonarQube ") {
-            steps {
-              withSonarQubeEnv('SonarQube') {
-                sh 'mvn clean -DskipTests package sonar:sonar'
-		echo "*********SonarQube analysis finished with SUCCESS *********"
-              }
-            }
-    }
+    
     stage('Junit/Mockito Testing') {
       steps {
          sh 'echo "*********Junit / Mockito Test is processing .... *********"'
