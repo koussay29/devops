@@ -1,0 +1,26 @@
+version: '3'
+services:
+  mysql_db_1:
+    image: mysql:5.7
+    restart: always
+    container_name: mysql_db_1
+    environment:
+      MYSQL_DATABASE: examv2thouraya
+      MYSQL_USERNAME: root
+      MYSQL_PASSWORD: asijee
+      MYSQL_ROOT_PASSWORD: asijee
+
+    ports:
+      - 3306:3306
+    expose:
+      - 3306
+
+  spring-back:
+    image: koussayheni/exam:latest
+    container_name: exam
+    ports:
+      - 8083:8083
+    depends_on:
+      - mysql_db_1
+    expose:
+      - 8083
