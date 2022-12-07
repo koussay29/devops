@@ -16,7 +16,7 @@ pipeline {
     }
     stage ('project compilation') {
             steps {
-                sh 'echo "*********Artifact construction is processing ....*********"'
+                sh 'echo "*********Compiling ....*********"'
                 sh 'mvn -DskipTests compile'
             }
         }
