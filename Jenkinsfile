@@ -64,13 +64,13 @@ pipeline {
      
 	
 	
-    /*
+    
     stage('Docker Compose') {
       		steps {
          		sh 'docker-compose up -d'
 			echo "*********Apllication Is Started *********"
       }
-    }
+    }/*
     stage('Junit/Mockito Testing') {
       steps {
          sh 'echo "*********Junit / Mockito Test is processing .... *********"'
