@@ -22,7 +22,7 @@ pipeline {
             }
         }
         
-    /*
+   
     stage("SonarQube ") {
             steps {
               withSonarQubeEnv('SonarQube') {
@@ -31,7 +31,7 @@ pipeline {
               }
             }
     }
-    
+    /*
     
      stage("NEXUS") {
 			steps {
