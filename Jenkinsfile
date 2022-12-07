@@ -21,6 +21,7 @@ pipeline {
                 sh 'mvn -DskipTests package'
             }
         }
+/*
     stage("NEXUS") {
 			steps {
 				sh 'mvn clean deploy -DskipTests'
@@ -49,7 +50,7 @@ pipeline {
 
       }
     }        
-   
+   */
     stage("SonarQube ") {
             steps {
               withSonarQubeEnv('SonarQube') {
