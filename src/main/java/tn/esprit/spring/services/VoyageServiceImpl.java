@@ -37,19 +37,17 @@ public class VoyageServiceImpl implements IVoyageService {
 
     @Override
     public List<Voyage> recupererAll() {
-        List<Voyage> list = (List<Voyage>) voyageRepository.findAll();
-        return list;
+        return (List<Voyage>) voyageRepository.findAll();
     }
 
     @Override
     public Voyage recupererVoyageParId(long idVoyage) {
-        Voyage v = voyageRepository.findById(idVoyage).orElse(null);
-        return v;
+        return voyageRepository.findById(idVoyage).orElse(null);
     }
 
     @Override
     public void supprimerVoyage(Voyage v) {
-        //TODO method
+    	voyageRepository.delete(v);
     }
 
 }
