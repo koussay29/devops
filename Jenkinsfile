@@ -21,26 +21,7 @@ pipeline {
                 sh 'mvn -DskipTests package'
             }
         }
-        
-   
-    stage("SonarQube ") {
-            steps {
-              withSonarQubeEnv('SonarQube') {
-                sh 'mvn clean -DskipTests package sonar:sonar'
-		echo "*********SonarQube analysis finished with SUCCESS *********"
-              }
-            }
-    }
-    /*
-    
-     stage("NEXUS") {
-			steps {
-				sh 'mvn clean deploy -DskipTests'
-				echo "*********NEXUS deployement finished with SUCCESS *********"
-          }
-        }
-	
-	
+
     stage('Docker build ') {
       steps {
          sh 'echo "*********Docker build image is processing ....*********"'
@@ -61,7 +42,27 @@ pipeline {
         sh 'docker push ${dockerhubusername}/ExamThourayaS2'
 
       }
+    }        
+   
+    stage("SonarQube ") {
+            steps {
+              withSonarQubeEnv('SonarQube') {
+                sh 'mvn clean -DskipTests package sonar:sonar'
+		echo "*********SonarQube analysis finished with SUCCESS *********"
+              }
+            }
     }
+    /*
+    
+     stage("NEXUS") {
+			steps {
+				sh 'mvn clean deploy -DskipTests'
+				echo "*********NEXUS deployement finished with SUCCESS *********"
+          }
+        }
+	
+	
+    
     stage('Docker Compose') {
       		steps {
          		sh 'docker-compose up -d'
