@@ -1,9 +1,9 @@
 version: '3'
 services:
-  mysql:
+  mysql_db_1:
     image: mysql:5.7
     restart: always
-    container_name: mysql
+    container_name: mysql_db_1
     environment:
       MYSQL_DATABASE: examv2thouraya
       MYSQL_USERNAME: root
@@ -14,15 +14,6 @@ services:
       - 3306:3306
     expose:
       - 3306
-  prom_mysql_exporter:
-    image: prom/mysqld-exporter
-    links:
-      - mysql
-    ports:
-      - '9104:9104'
-    environment:
-      DATA_SOURCE_NAME: root:asijee@(mysql:3306)/examv2thouraya
-    command: /bin/mysqld_exporter collect.binlog_size=true collect.info_schema.processlist=true
 
   spring-back:
     image: koussayheni/exam:latest
@@ -30,6 +21,6 @@ services:
     ports:
       - 8083:8083
     depends_on:
-      - mysql
+      - mysql_db_1
     expose:
       - 8083
