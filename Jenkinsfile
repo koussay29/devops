@@ -68,7 +68,7 @@ pipeline {
          		sh 'docker-compose up -d'
 			echo "*********Apllication Is Started *********"
       }
-    }/*
+    }
     
     stage('Junit/Mockito Testing') {
       steps {
@@ -77,6 +77,6 @@ pipeline {
       }
     }
 
-*/
+
   }
 }
